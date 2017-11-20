@@ -11,12 +11,13 @@
 class SimpleWalker {
 
 public:
-SimpleWalker();
+explicit SimpleWalker(ros::NodeHandle nh);
 void processScan(const sensor_msgs::LaserScan::ConstPtr& scan);
 
 private:
-ros::NodeHandle nh_;
+// ros::NodeHandle nh_;
 ros::Publisher velPub_;
 ros::Subscriber laserSub_;
 bool obstacleIsNear_;
+geometry_msgs::Twist msg;
 };
