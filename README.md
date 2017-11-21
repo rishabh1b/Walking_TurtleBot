@@ -23,3 +23,29 @@ cd ~/catkin_ws/
 source devel/setup.bash
 roslaunch simple_walker demo.launch
 ```
+## Working with Bag Files
+For optionally recording the bag files with all the topics except ```/camera/*``` topics with given duration run the following
+```
+roslaunch beginner_tutorials demo.launch rec_bag:=true bag_dur:=30
+```
+The bag file get saved in ```~/.ros``` folder 
+
+Bag Files can be inspected using
+```
+rosbag info bagfile.bag
+```
+This will enlist all the topics recorded.
+
+#### For testing the provided bag file run the following commands in separate terminals- 
+```
+roscore
+```
+```
+cd ~/catkin_ws/src/simple_walker
+rosrun rviz rviz -d bagTest.rviz
+```
+```
+cd ~/catkin_ws/src/simple_walker/outputs/bagFiles
+rosbag play bagFileName.bag
+```
+This will simulate turtlebot's ```base_footprint``` frame with reference to ```odom``` frame and also show laser scan readings by default in rviz.
