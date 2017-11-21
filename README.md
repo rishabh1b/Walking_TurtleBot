@@ -14,17 +14,22 @@ catkin_make
 ## Dependencies
 1. ROS Kinetic. This can be downloaded by following the steps [here](http://wiki.ros.org/kinetic/Installation).
 2. ROS standard package for TurtleBot Simulation in Gazebo- ``` ros-kinetic-turtlebot-gazebo ```
-2. CMake. This can be downloaded from [here](https://cmake.org/download/)
+Install using -
+```
+sudo apt-get install ros-kinetic-turtlebot-gazebo
+```
+
+3. CMake. This can be downloaded from [here](https://cmake.org/download/)
 
 ## Basic Demonstration
-Following commands will spawn turtlebot in Gazebo environment (turtlebot_world) to simulate a obstacle avoidance behaviour using laserscan data
+Following commands will spawn turtlebot in Gazebo environment (turtlebot_world) to simulate an obstacle avoidance behaviour using laserscan data
 ```
 cd ~/catkin_ws/
 source devel/setup.bash
 roslaunch simple_walker demo.launch
 ```
 ## Working with Bag Files
-For optionally recording the bag files with all the topics except ```/camera/*``` topics with given duration run the following
+For optionally recording the bag files with all the topics except ```/camera/*``` topics for a specific duration run the following
 ```
 roslaunch beginner_tutorials demo.launch rec_bag:=true bag_dur:=30
 ```
@@ -36,7 +41,7 @@ rosbag info bagfile.bag
 ```
 This will enlist all the topics recorded.
 
-#### For testing the provided bag file run the following commands in separate terminals- 
+#### For testing the recorded bag file run the following commands in separate terminals- 
 ```
 roscore
 ```
