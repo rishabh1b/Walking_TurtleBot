@@ -1,8 +1,16 @@
 <launch>
+<arg name = "rec_bag" default="false"/>
+<arg name = "bag_dur" default="30"/>
+
   <include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch">
   </include>
 
   <node pkg = "simple_walker" type="simple_walker_node" name="simple_walker_node" output="screen">
   </node>
+
+<group if="$(arg rec_bag)">
+   <node pkg = "rosbag" type="record" name="record" 
+    args="-a -o ./walkerbag --exclude=&quot;/camera/(.*)&quot; --duration=$(arg bag_dur)" output="screen"/>
+</group>
 
 </launch>

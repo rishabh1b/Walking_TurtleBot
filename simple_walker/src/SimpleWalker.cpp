@@ -9,7 +9,7 @@
 #include "simple_walker/SimpleWalker.h"
 
 #define SAFE_TOL 1.2 // 1.2m distance as the tolerance
-#define SAFE_ANGLE 12 // 12 degrees
+#define SAFE_ANGLE 10 // 10 degrees
 
 SimpleWalker::SimpleWalker(ros::NodeHandle nh) {
 velPub_ = nh.advertise<geometry_msgs::Twist>("/cmd_vel_mux/input/navi", 10);
