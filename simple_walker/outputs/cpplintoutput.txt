@@ -1,0 +1,4 @@
+./src/SimpleWalker.cpp:50:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
+Done processing ./src/SimpleWalker.cpp
+Total errors found: 1
+

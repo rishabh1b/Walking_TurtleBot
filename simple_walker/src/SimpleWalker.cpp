@@ -1,3 +1,25 @@
+// MIT License
+
+// Copyright (c) 2017 Rishabh Biyani
+
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
 /**
 * @file SimpleWalker.cpp Class Implementations to simply follow a path avoiding obstacles
 * @author rishabh1b(Rishabh Biyani)
@@ -8,8 +30,8 @@
 #include <vector>
 #include "simple_walker/SimpleWalker.h"
 
-#define SAFE_TOL 1.2 // 1.2m distance as the tolerance
-#define SAFE_ANGLE 10 // 10 degrees
+#define SAFE_TOL 1.2  // 1.2m distance as the tolerance
+#define SAFE_ANGLE 10  // 10 degrees
 
 SimpleWalker::SimpleWalker(ros::NodeHandle nh) {
 velPub_ = nh.advertise<geometry_msgs::Twist>("/cmd_vel_mux/input/navi", 10);
@@ -42,15 +64,15 @@ float min_dist;
 min_dist = ranges[min_range];
 for (auto i = min_range; i < max_range; i++) {
 if (ranges[i] < min_dist)
-   min_dist = ranges[i];
+    min_dist = ranges[i];
 }
 
 // If any scanner readings are not available,
 //  we rotate in place to ensure that we remain bounded near to obstacles
 if (std::isnan(min_dist) || min_dist > scan->range_max || min_dist < scan->range_min) {
-   // ROS_INFO("No Scan Messages received");
-   velPub_.publish(msg);
-   return;
+    // ROS_INFO("No Scan Messages received");
+    velPub_.publish(msg);
+    return;
 }
 
 if (min_dist < SAFE_TOL)
@@ -62,11 +84,10 @@ if (obstacleIsNear_) {
 // Rotate in Place
 msg.linear.x = 0;
 msg.angular.z = -0.3;
-}
-else {
-// Follow Straight Line
-msg.linear.x = 0.3;
-msg.angular.z = 0;
+} else {
+    // Follow Straight Line
+    msg.linear.x = 0.3;
+    msg.angular.z = 0;
 }
 velPub_.publish(msg);
 }
