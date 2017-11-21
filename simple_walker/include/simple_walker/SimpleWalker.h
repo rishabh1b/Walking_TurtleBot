@@ -9,15 +9,33 @@
 #include "geometry_msgs/Twist.h"
 
 class SimpleWalker {
-
 public:
+/**
+* @brief Constructor for SimpleWalking algorithm turtlebot
+* @param ros::NodeHandle node handle on which subscription and publishing would be made
+*/
 explicit SimpleWalker(ros::NodeHandle nh);
+/**
+* @brief processScan for processing the laser scan data as obtained from turtlebot
+* @param ros::NodeHandle node handle on which subscription and publishing would be made
+*/
 void processScan(const sensor_msgs::LaserScan::ConstPtr& scan);
 
 private:
-// ros::NodeHandle nh_;
+/**
+* @brief private member variable velocity publisher
+*/
 ros::Publisher velPub_;
+/**
+* @brief private member variable Laser Scan Data Subscriber
+*/
 ros::Subscriber laserSub_;
+/**
+* @brief private member boolean to keep track of whether the obstacle is seen or not
+*/
 bool obstacleIsNear_;
+/**
+* @brief private member variable keeping track of exact velocity command to be published
+*/
 geometry_msgs::Twist msg;
 };
